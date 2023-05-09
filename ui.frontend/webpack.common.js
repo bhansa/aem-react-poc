@@ -19,7 +19,7 @@ const resolve = {
 module.exports = {
     resolve: resolve,
     entry: {
-        site: SOURCE_ROOT + '/site/main.ts'
+        site: SOURCE_ROOT + '/site/app.js'
     },
     output: {
         filename: (chunkData) => {
@@ -74,7 +74,17 @@ module.exports = {
                         }
                     }
                 ]
-            }
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: "babel-loader",
+                  options: {
+                    presets: ["@babel/preset-react", "@babel/preset-env"],
+                  },
+                },
+              },
         ]
     },
     plugins: [
